@@ -1,0 +1,44 @@
+const database = "venuedb";
+use(database);
+db.venues.insertOne({
+  name: "Trigo Bakery Cafe",
+  address:
+    "Modern Evler, 3102. Sk. no 57/59, 32200 Merkez/Isparta",
+  rating: 5,
+  menu: ["Coffee", "Tea", "Pastry", "Sandwich"],
+  coordinates: [37.4835952, 28.9303529],
+  hours: [
+    {
+      days: "Monday-Sunday",
+      open: "00:00",
+      close: "06:00",
+      isClosed: false,
+    },
+    {
+      days: "Monday-Sunday",
+      open: "14:00",
+      close: "00:00",
+      isClosed: false,
+    },
+  ],
+  comments: [
+    {
+      user: "Mehmet",
+      rating: 5,
+      text: "Ortam aşırı keyifli , sunumlar 10 numara. Garsonların ilgi alakasından da çok memnun kaldık. Herkese tavsiye ederim.",
+      date: ISODate("2025-04-15T12:30:00Z"),
+    },
+    {
+      user: "Cennet",
+      rating: 5,
+      text: "Vpp çok güzel çok memnun kaldık.",
+      date: ISODate("2021-05-20T12:34:00Z"),
+    },
+    {
+      user: "Tutku",
+      rating: 5,
+      text: "Tatlıları ve özellikle pizzası çok güzel bir mekan. Fiyatlar makul seviyede. Sürekli geldiğmiz bir yer umarım bozulmaz.",
+      date: ISODate("2023-11-10T09:15:00Z"),
+    },
+  ],
+});

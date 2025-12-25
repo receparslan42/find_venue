@@ -1,0 +1,14 @@
+const database = 'venueDB';
+use(database);
+db.venues.updateOne({"name":"Barida Cam Kafe"},
+  {$push: {"comments": 
+    {
+      "_id": ObjectId(),
+      "user": "Recep",
+      "rating": 5,
+      "text": "Kahveler harika",
+      "date": new Date()
+    }
+  }
+}
+)

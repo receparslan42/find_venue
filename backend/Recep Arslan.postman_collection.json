@@ -1,0 +1,683 @@
+{
+	"info": {
+		"_postman_id": "027152c2-3fa4-47b8-b56d-81184554278f",
+		"name": "Recep Arslan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50514912",
+		"_collection_link": "https://receparslan-1569365.postman.co/workspace/Recep-Arslan's-Workspace~36698f89-9687-49a6-8e0b-39fbffd97323/collection/50514912-027152c2-3fa4-47b8-b56d-81184554278f?action=share&source=collection_link&creator=50514912"
+	},
+	"item": [
+		{
+			"name": "Signup User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Recep",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "Arslan",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "recep@test.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://find-venue.vercel.app/api/signup",
+					"protocol": "https",
+					"host": [
+						"find-venue",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"api",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "admin@test.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://find-venue.vercel.app/api/login",
+					"protocol": "https",
+					"host": [
+						"find-venue",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Venues",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Admin Token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://find-venue.vercel.app/api/admin",
+					"protocol": "https",
+					"host": [
+						"find-venue",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"api",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Venues By Location",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://find-venue.vercel.app/api/venues?lat=37&long=30",
+					"protocol": "https",
+					"host": [
+						"find-venue",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"api",
+						"venues"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "37"
+						},
+						{
+							"key": "long",
+							"value": "30"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Venue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Admin Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Arabica Coffee",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Yayla, 1610. Sk. No:8, 32100 Isparta Merkez/Isparta",
+							"type": "text"
+						},
+						{
+							"key": "menu",
+							"value": "Cookie",
+							"type": "text"
+						},
+						{
+							"key": "menu",
+							"value": "Cafe Latte",
+							"type": "text"
+						},
+						{
+							"key": "coordinates",
+							"value": "[37.7725938, 30.5366848]",
+							"type": "text"
+						},
+						{
+							"key": "hours",
+							"value": "[{\"days\": \"Monday-Friday\", \"open\": \"09:00\", \"close\": \"00:00\", \"isClosed\": false},{\"days\": \"Saturday-Sunday\", \"open\": \"12:00\", \"close\": \"22:00\", \"isClosed\": false}]",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://find-venue.vercel.app/api/venues",
+					"protocol": "https",
+					"host": [
+						"find-venue",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"api",
+						"venues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Venue By VenueID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://find-venue.vercel.app/api/venues/{{venueid}}",
+					"protocol": "https",
+					"host": [
+						"find-venue",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"api",
+						"venues",
+						"{{venueid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Venue By VenueID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Admin Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Arabica Coffee",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Yayla, 1610. Sk. No:8, 32100 Isparta Merkez/Isparta",
+							"type": "text"
+						},
+						{
+							"key": "menu",
+							"value": "Cola",
+							"type": "text"
+						},
+						{
+							"key": "menu",
+							"value": "Coffee",
+							"type": "text"
+						},
+						{
+							"key": "coordinates",
+							"value": "[37.7725938, 30.5366848]",
+							"type": "text"
+						},
+						{
+							"key": "hours",
+							"value": "[{\"days\": \"Monday-Friday\", \"open\": \"08:00\", \"close\": \"23:00\", \"isClosed\": false},{\"days\": \"Saturday-Sunday\", \"open\": \"10:00\", \"close\": \"22:00\", \"isClosed\": false}]",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://find-venue.vercel.app/api/venues/{{venueid}}",
+					"protocol": "https",
+					"host": [
+						"find-venue",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"api",
+						"venues",
+						"{{venueid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Venue By VenueID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Admin Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://find-venue.vercel.app/api/venues/{{venueid}}",
+					"protocol": "https",
+					"host": [
+						"find-venue",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"api",
+						"venues",
+						"{{venueid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Comment By VenueID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{User Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "rating",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Kurabiyeler çok güzel.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://find-venue.vercel.app/api/venues/{{venueid}}/comments",
+					"protocol": "https",
+					"host": [
+						"find-venue",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"api",
+						"venues",
+						"{{venueid}}",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Comment By VenueID And CommentID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://find-venue.vercel.app/api/venues/{{venueid}}/comments/{{commentid}}",
+					"protocol": "https",
+					"host": [
+						"find-venue",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"api",
+						"venues",
+						"{{venueid}}",
+						"comments",
+						"{{commentid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Comment By VenueID And CommentID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Admin Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "rating",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Kurabiyeler rezalet.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://find-venue.vercel.app/api/venues/{{venueid}}/comments/{{commentid}}",
+					"protocol": "https",
+					"host": [
+						"find-venue",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"api",
+						"venues",
+						"{{venueid}}",
+						"comments",
+						"{{commentid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Comment By VenueID And CommentID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Admin Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://find-venue.vercel.app/api/venues/{{venueid}}/comments/{{commentid}}",
+					"protocol": "https",
+					"host": [
+						"find-venue",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"api",
+						"venues",
+						"{{venueid}}",
+						"comments",
+						"{{commentid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Admin Token",
+			"value": ""
+		},
+		{
+			"key": "User Token",
+			"value": ""
+		}
+	]
+}
