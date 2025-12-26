@@ -152,7 +152,7 @@ const VenueDetail = () => {
                   {/* NavLink to add a new comment */}
                   <NavLink
                     className="btn btn-default"
-                    to={`/venue/${venue._id}/comment/new`}
+                    to={`/venue/${venueID}/comment/new`}
                     state={{ name: venue.name }}
                   >
                     Add Comment
