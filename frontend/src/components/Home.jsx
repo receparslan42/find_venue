@@ -6,11 +6,11 @@ import { useSelector, useDispatch } from "react-redux";
 import VenueDataService from "../services/VenueDataService";
 
 const Home = () => {
+  // State for user's geolocation coordinates
+  const [coordinates, setCoordinates] = React.useState(null);
+
   // Get venues data from Redux store
   const venues = useSelector((state) => state.data);
-
-  // State for user's geolocation coordinates
-  const [coordinates, setCoordinates] = React.useState({ long: 1, lat: 1 });
 
   // State for search input
   const [searchVenue, setSearchVenue] = React.useState("");
@@ -42,6 +42,8 @@ const Home = () => {
 
   // Fetch nearby venues when coordinates change
   React.useEffect(() => {
+    if (!coordinates) return; // Exit if coordinates are not available
+
     dispatch({ type: "FETCH_DATA_INIT" });
     VenueDataService.nearbyVenues(coordinates.long, coordinates.lat)
       .then((response) => {

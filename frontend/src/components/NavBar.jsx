@@ -11,22 +11,26 @@ export default function NavBar() {
       <div className="container">
         <div className="navbar-header">
           {/* Brand link to home page */}
-          <NavLink className="navbar-brand" to="/">
-            Home
-          </NavLink>
+          <ul className="nav navbar-nav navbar-left">
+            <li className="mr-30">
+              <NavLink className="navbar-brand" to="/">
+                Find Venue
+              </NavLink>
+            </li>
 
-          {/* Mobile menu toggle button */}
-          <button
-            className="navbar-toggle"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbar-main"
-          >
-            {/* Hamburger icon for mobile view */}
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-          </button>
+            {/* Mobile menu toggle button */}
+            <button
+              className="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbar-main"
+            >
+              {/* Hamburger icon for mobile view */}
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+          </ul>
         </div>
 
         {/* Collapsible menu items */}
@@ -35,7 +39,10 @@ export default function NavBar() {
           <ul className="nav navbar-nav navbar-left">
             {/* Link to About page */}
             <li>
-              <NavLink to="/about"> About </NavLink>
+              <NavLink className="navbar-brand" to="/about">
+                {" "}
+                About{" "}
+              </NavLink>
             </li>
           </ul>
 
@@ -44,7 +51,9 @@ export default function NavBar() {
             {/* Admin link */}
             {user?.role === "admin" && (
               <li>
-                <NavLink to="/admin">Admin Panel</NavLink>
+                <NavLink className="navbar-brand" to="/admin">
+                  Admin Panel
+                </NavLink>
               </li>
             )}
 
@@ -52,15 +61,24 @@ export default function NavBar() {
             {user ? (
               <>
                 <li>
-                  <p className="navbar-text" style={{ margin: 0, padding: "15px" }}>{user.email}</p>
+                  <p
+                    className="navbar-text"
+                    style={{ margin: 0, padding: "15px" }}
+                  >
+                    {user.email}
+                  </p>
                 </li>
                 <li>
-                  <NavLink to="/logout">Logout</NavLink>
+                  <NavLink className="navbar-brand" to="/logout">
+                    Logout
+                  </NavLink>
                 </li>
               </>
             ) : (
               <li>
-                <NavLink to="/login">Login</NavLink>
+                <NavLink className="navbar-brand" to="/login">
+                  Login
+                </NavLink>
               </li>
             )}
           </ul>
