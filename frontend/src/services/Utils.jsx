@@ -2,18 +2,17 @@
 export function formatDate(d) {
   var date = new Date(d);
 
-  const formatted =
-    date.toLocaleTimeString("en-GB", {
+  return {
+    time: date.toLocaleTimeString("en-GB", {
       hour: "2-digit",
       minute: "2-digit",
-    }) +
-    " " +
-    date.toLocaleDateString("en-GB", {
+    }),
+    date: date.toLocaleDateString("en-GB", {
       day: "numeric",
       month: "long",
       year: "numeric",
-    });
-  return formatted;
+    }),
+  };
 }
 
 // Utility function for formatting distances

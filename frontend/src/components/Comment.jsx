@@ -21,6 +21,8 @@ const Comment = ({ comment, index }) => {
 
   const [showModal, setShowModal] = React.useState(false); // State for modal visibility
 
+  const { time, date } = formatDate(comment.date); // Format comment date
+
   // Handler for updating a comment
   const handleUpdate = () => {
     navigate(`/admin/venue/${venueID}/comment/${commentID}/update`);
@@ -65,7 +67,10 @@ const Comment = ({ comment, index }) => {
 
             <div className="reviewFooter">
               <small className="reviewTimestamp">
-                {formatDate(comment.date)}
+                <div style={{ textAlign: "center" }}>
+                  <div>{time}</div>
+                  <div>{date}</div>
+                </div>
               </small>
             </div>
           </div>
