@@ -6,10 +6,10 @@ const createResponse = (res, status, content) => {
   res.status(status).json(content);
 };
 
-const listAllVenues = async (req, res) => {
+const getAllVenues = async (req, res) => {
   try {
     // Only admin users can access all venues
-    if (req.user.role !== "admin") {
+    if (req.auth.role !== "admin") {
       return res.status(403).json({
         status: "error",
         message: "Only admin users can access all venues",
@@ -150,7 +150,7 @@ const getVenue = async (req, res) => {
 const addVenue = async (req, res) => {
   try {
     // Only admin users can add new venues
-    if (req.user.role !== "admin") {
+    if (req.auth.role !== "admin") {
       return res.status(403).json({
         status: "error",
         message: "Only admin users can add new venues",
@@ -221,7 +221,7 @@ const addVenue = async (req, res) => {
 const updateVenue = async (req, res) => {
   try {
     // Only admin users can update venues
-    if (req.user.role !== "admin") {
+    if (req.auth.role !== "admin") {
       return res.status(403).json({
         status: "error",
         message: "Only admin users can update venues",
@@ -320,7 +320,7 @@ const updateVenue = async (req, res) => {
 const deleteVenue = async (req, res) => {
   try {
     // Only admin users can delete venues
-    if (req.user.role !== "admin") {
+    if (req.auth.role !== "admin") {
       return res.status(403).json({
         status: "error",
         message: "Only admin users can delete venues",
@@ -349,7 +349,7 @@ const deleteVenue = async (req, res) => {
 };
 
 module.exports = {
-  listAllVenues,
+  getAllVenues,
   listVenuesByLocation,
   addVenue,
   getVenue,

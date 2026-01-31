@@ -42,8 +42,7 @@ const createResponse = (res, status, content) => {
 // Create a new comment for a venue
 const createComment = (req, res, venue) => {
   try {
-    // Add the new comment to the venue's comments array
-    req.body.user = req.user.username;
+    req.body.user = req.auth.username;
     venue.comments.push(req.body);
 
     // Save the updated venue with the new comment and update its rating
@@ -141,7 +140,7 @@ const updateComment = async (req, res) => {
     }
 
     // Only admin users can update comments
-    if (req.user.role !== "admin") {
+    if (req.auth.role !== "admin") {
       return createResponse(res, 403, {
         status: "error",
         message: "Only admins can modify comments",
@@ -188,7 +187,7 @@ const deleteComment = async (req, res) => {
     }
 
     // Only admin users can delete comments
-    if (req.user.role !== "admin") {
+    if (req.auth.role !== "admin") {
       return createResponse(res, 403, {
         status: "error",
         message: "Only admins can modify comments",

@@ -16,7 +16,13 @@ const AuthRouter = require("./app_api/routes/AuthRoutes");
 const VenueRouter = require("./app_api/routes/VenueRoutes");
 const CommentRouter = require("./app_api/routes/CommentRoutes");
 
+// Passport.js setup
+const passport = require("passport");
+require("./app_api/config/passport");
+
 const app = express();
+
+app.use(passport.initialize()); // Initialize Passport.js
 
 // Middleware to allow CORS
 const allowCrossDomain = (req, res, next) => {
@@ -25,11 +31,6 @@ const allowCrossDomain = (req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
 };
-
-// Passport.js setup
-const passport = require("passport");
-app.use(passport.initialize());
-require("./app_api/config/passport")(passport);
 
 app.use(allowCrossDomain);
 
@@ -42,5 +43,12 @@ app.use("/api", [AuthRouter, VenueRouter, CommentRouter]);
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+
+// Error handling for unauthorized access
+app.use((err, _req, res, _next) => {
+  if (err.name === "UnauthorizedError") {
+    res.status(401).json({ message: err.name + ": " + err.message });
+  }
+});
 
 module.exports = app;

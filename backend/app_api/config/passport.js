@@ -1,28 +1,30 @@
-const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
+
 const User = mongoose.model("User");
 
-// JWT strategy options configuration
-const opts = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: process.env.JWT_SECRET, // Secret key for verifying JWT for signature
-};
-
-// Passport.js JWT strategy setup
-module.exports = (passport) => {
-  passport.use(
-    new JwtStrategy(opts, async (jwt_payload, done) => {
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password",
+    },
+    async (email, password, done) => {
       try {
-        // Find user by ID from JWT payload
-        const user = await User.findById(jwt_payload.id);
+        const user = await User.findOne({ email: email.trim().toLowerCase() });
 
-        // If user not found, return false
-        if (!user) return done(null, false);
+        // Check if user exists and password is correct
+        if (!user || !user.validatePassword(password)) {
+          return done(null, false, {
+            message: "Invalid email or password",
+          });
+        }
 
-        return done(null, user); // User found, return user object
-      } catch (error) {
-        return done(error, false);
+        return done(null, user); // Success
+      } catch (err) {
+        return done(err);
       }
-    })
-  );
-};
+    }
+  )
+);

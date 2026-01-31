@@ -5,7 +5,7 @@ const requireAuth = require("../middleware/auth"); // Import authentication midd
 var venueController = require("../controller/VenueController"); // Import venue controller
 
 // Route for admin to list all venues, protected by authentication middleware
-router.route("/admin").get(requireAuth, venueController.listAllVenues);
+router.route("/admin").get(requireAuth, venueController.getAllVenues);
 
 // Routes for venues - listing and adding venues
 router
